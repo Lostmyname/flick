@@ -5,9 +5,9 @@ var $ = require('jquery');
 /**
  * Mouse input. Output based on how far the mouse is across the y-axis.
  *
- * @returns {*|jQuery|HTMLElement}
+ * @returns {jQuery} Input handler: fires "change" events between 0 and 1.
  */
-module.exports = function flickMouseInput() {
+module.exports = function flickMouseInputY() {
   var $this = $(this);
   var $inputHandler = $({});
 
