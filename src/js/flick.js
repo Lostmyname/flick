@@ -4,30 +4,24 @@ var $ = require('jquery');
 
 $.flick = {};
 
-$.flick.mouseInput = function flickMouseInput() {
-  var $this = $(this);
-  var $inputHandler = $({});
-
-  var offset = $this.offset().left;
-  var width = $this.find('img').eq(0).width();
-
-  $this.on('mousemove', function (e) {
-    var left = e.pageX - offset;
-    $inputHandler.triggerHandler('change', left / width);
-  });
-
-  return $inputHandler;
+$.flick.inputs = {
+  mouse: require('./inputs/mouse')
 };
 
 $.flick.defaults = {
-  input: $.flick.mouseInput // String or function
+  input: 'mouse' // String or function
 };
 
+/**
+ * Make a flicky thing!
+ *
+ * @param {object} options Object containing some options.
+ */
 $.fn.flick = function flick(options) {
   options = $.extend({}, $.flick.defaults, options);
 
   if (typeof options.input === 'string') {
-    options.input = $.flick[options.input];
+    options.input = $.flick.inputs[options.input];
   }
 
   var $inputHandler = options.input.call(this, options);
