@@ -15,6 +15,6 @@
 
   "browser": true,
   "devel": true,
-  "jquery": true,
+  "jquery": false,
   "node": true
 }

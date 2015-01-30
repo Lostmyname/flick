@@ -1,0 +1,9 @@
+.flick {
+  :first-child {
+    z-index: 1;
+  }
+
+  img {
+    position: absolute;
+  }
+}
