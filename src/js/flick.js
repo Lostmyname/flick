@@ -5,11 +5,12 @@ var $ = require('jquery');
 $.flick = {};
 
 $.flick.inputs = {
-  mouse: require('./inputs/mouse')
+  mouseX: require('./inputs/mouseX'),
+  mouseY: require('./inputs/mouseY')
 };
 
 $.flick.defaults = {
-  input: 'mouse' // String or function
+  input: 'mouseX' // String or function
 };
 
 /**
