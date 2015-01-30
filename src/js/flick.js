@@ -20,11 +20,15 @@ $.flick.mouseInput = function flickMouseInput() {
 };
 
 $.flick.defaults = {
-  input: $.flick.mouseInput
+  input: $.flick.mouseInput // String or function
 };
 
 $.fn.flick = function flick(options) {
   options = $.extend({}, $.flick.defaults, options);
+
+  if (typeof options.input === 'string') {
+    options.input = $.flick[options.input];
+  }
 
   var $inputHandler = options.input.call(this, options);
   var $pages = $(this).find('img');
