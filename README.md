@@ -1,10 +1,10 @@
-# YOUR COMPONENT HERE
+# Flick
 
-C'mon, write a readme.
+Flick is an experimental preview for the A–Z book.
 
 ## Installation
 
-Use through npm.
+impossible currently
 
 ### Development
 
