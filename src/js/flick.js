@@ -1,6 +1,7 @@
 'use strict';
 
 var $ = require('jquery');
+var afterDelay = require('after-delay');
 
 $.flick = {};
 
@@ -40,10 +41,23 @@ $.fn.flick = function flick(options) {
 
     $pages.filter('.active').removeClass('active').end()
       .eq(pageNumber).addClass('active');
+
+    afterDelay('flick', function () {
+      goHighRes($pages.eq(pageNumber));
+    }, 100);
   });
 
   $inputHandler.triggerHandler('change', [0]);
 };
 
-// Automatically flick from data-key
+function goHighRes($page) {
+  if (!$page.data('high')) {
+    return;
+  }
+
+  $page.attr('src', $page.data('high'));
+  $page.data('high', null);
+}
+
+// Automatically flick from classname
 $('.js-flick').flick();
