@@ -28,12 +28,21 @@ $.fn.flick = function flick(options) {
   var $inputHandler = options.input.call(this, options);
   var $pages = $(this).find('img');
 
+  var lastPageNumber = 0;
+
   $inputHandler.on('change', function (e, percent) {
     var pageNumber = Math.floor(($pages.length + 1) * percent);
 
-    $pages.css('z-index', 1)
-      .eq(pageNumber).css('z-index', 2);
+    if (pageNumber === lastPageNumber) {
+      return;
+    }
+    lastPageNumber = pageNumber;
+
+    $pages.filter('.active').removeClass('active').end()
+      .eq(pageNumber).addClass('active');
   });
+
+  $inputHandler.triggerHandler('change', [0]);
 };
 
 // Automatically flick from data-key
