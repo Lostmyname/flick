@@ -10,7 +10,8 @@ var buildPath = './demo/build/';
 gulp.task('auto-reload', loadLmnTask('auto-reload'));
 
 gulp.task('html', loadLmnTask('html', {
-  langBase: 'component.flick'
+  langBase: 'component.flick',
+  imagePath: '../../src/imgs/'
 }));
 
 gulp.task('js', ['js-quality'], loadLmnTask('browserify', {
@@ -28,20 +29,7 @@ gulp.task('scss', loadLmnTask('scss', {
   imagePath: '../images'
 }));
 
-gulp.task('responsive-images', loadLmnTask('responsive-images', {
-  src: './src/**/*.{png,jpg,gif}',
-  dest: path.join(buildPath, 'images'),
-  lossless: true
-}));
-
-gulp.task('optimise-svgs', loadLmnTask('optimise-svgs', {
-  src: './src/**/*.svg',
-  dest: path.join(buildPath, 'images'),
-  flatten: true
-}));
-
-gulp.task('images', ['responsive-images', 'optimise-svgs']);
-gulp.task('build', ['images', 'html', 'js', 'scss']);
+gulp.task('build', ['html', 'js', 'scss']);
 
 gulp.task('default', ['build'], function () {
   var config = {
