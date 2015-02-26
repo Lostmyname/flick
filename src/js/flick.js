@@ -7,11 +7,12 @@ $.flick = {};
 
 $.flick.inputs = {
   mouseX: require('./inputs/mouseX'),
-  mouseY: require('./inputs/mouseY')
+  mouseY: require('./inputs/mouseY'),
+  tilt: require('./inputs/tilt')
 };
 
 $.flick.defaults = {
-  input: 'mouseX' // String or function
+  input: 'tilt' // String or function
 };
 
 /**
