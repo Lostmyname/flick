@@ -2,6 +2,7 @@
 
 var $ = require('jquery');
 var afterDelay = require('after-delay');
+var isMobile = require('./helpers/isMobile');
 
 $.flick = {};
 
@@ -11,25 +12,19 @@ $.flick.inputs = {
   tilt: require('./inputs/tilt')
 };
 
-$.flick.defaults = {
-  input: 'tilt' // String or function
-};
-
 /**
  * Make a flicky thing!
  *
  * @param {object} options Object containing some options.
  */
 $.fn.flick = function flick(options) {
-  options = $.extend({}, $.flick.defaults, options);
-
-  if (typeof options.input === 'string') {
-    options.input = $.flick.inputs[options.input];
+  if (isMobile()) {
+    var $inputHandler = $.flick.inputs.tilt.call(this, options);
+  } else {
+    var $inputHandler = $.flick.inputs.mouseX.call(this, options);
   }
 
-  var $inputHandler = options.input.call(this, options);
   var $pages = $(this).find('img');
-
   var lastPageNumber = 0;
 
   $inputHandler.on('change', function (e, percent) {

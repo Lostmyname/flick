@@ -13,8 +13,10 @@ module.exports = function flickMouseInputX() {
 
   var offset = $this.offset().left;
   var width = $this.find('img').eq(0).width();
+  console.log('Flick mouse');
 
   $this.on('mousemove', function (e) {
+    console.log('MOuse move');
     var left = e.pageX - offset;
     $inputHandler.triggerHandler('change', left / width);
   });
