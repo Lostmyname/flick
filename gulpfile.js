@@ -9,11 +9,6 @@ var buildPath = './demo/build/';
 
 gulp.task('auto-reload', loadLmnTask('auto-reload'));
 
-// gulp.task('html', loadLmnTask('html', {
-//   langBase: 'component.flick',
-//   imagePath: '../../src/imgs/'
-// }));
-
 gulp.task('js', ['js-quality'], loadLmnTask('browserify', {
   src: './src/js/flick.js',
   dest: path.join(buildPath, 'js/bundle.js')
