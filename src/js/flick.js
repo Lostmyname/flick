@@ -2,18 +2,18 @@
 
 var $ = require('jquery');
 var afterDelay = require('after-delay');
+var isTouch = require('touch-screen');
 
 $.flick = {};
 
 $.flick.inputs = {
   mouseX: require('./inputs/mouseX'),
-  mouseY: require('./inputs/mouseY'),
   tilt: require('./inputs/tilt')
 };
 
 $.flick.defaults = {
-  input: 'tilt' // String or function
-};
+  input: 'auto'
+}
 
 /**
  * Make a flicky thing!
@@ -23,13 +23,13 @@ $.flick.defaults = {
 $.fn.flick = function flick(options) {
   options = $.extend({}, $.flick.defaults, options);
 
-  if (typeof options.input === 'string') {
-    options.input = $.flick.inputs[options.input];
+  if (options.input === 'auto') {
+    options.input = isTouch() ? 'tilt' : 'mouseX';
   }
 
-  var $inputHandler = options.input.call(this, options);
-  var $pages = $(this).find('img');
+  var $inputHandler = $.flick.inputs[options.input].call(this, options);
 
+  var $pages = $(this).find('img');
   var lastPageNumber = 0;
 
   $inputHandler.on('change', function (e, percent) {

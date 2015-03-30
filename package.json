@@ -7,13 +7,14 @@
   "dependencies": {
     "after-delay": "^1.0.0",
     "browserify": "^6.2.0",
-    "jquery": "^1.11.2"
+    "jquery": "^1.11.2",
+    "touch-screen": "^0.1.0"
   },
   "devDependencies": {
     "browser-sync": "^2.0.1",
     "gulp": "^3.8.8",
     "gulp-ruby-sass": "^0.7.1",
-    "lmn-gulp-tasks": "^1.3.1"
+    "lmn-gulp-tasks": "^1.3.4"
   },
   "scripts": {
     "jscs": "jscs ."
