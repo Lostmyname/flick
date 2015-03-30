@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "flickflickflick",
   "author": "callumacrae",
-  "main": "js/flick.js",
+  "main": "src/js/flick.js",
   "dependencies": {
     "after-delay": "^1.0.0",
     "browserify": "^6.2.0",

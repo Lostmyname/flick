@@ -13,7 +13,7 @@ $.flick.inputs = {
 
 $.flick.defaults = {
   input: 'auto'
-}
+};
 
 /**
  * Make a flicky thing!
