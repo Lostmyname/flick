@@ -1,5 +1,7 @@
 'use strict';
 
+var isTouch = require('touch-screen');
+
 /**
  * Returns whether browser is a mobile or not. Tests for touch support and
  * screen width.
@@ -8,7 +10,7 @@
  */
 module.exports = function () {
   // If doesn't support touch
-  if (!('ontouchstart' in window) && !navigator.msMaxTouchPoints) {
+  if (!isTouch) {
     return false;
   }
 

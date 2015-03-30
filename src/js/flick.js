@@ -2,15 +2,18 @@
 
 var $ = require('jquery');
 var afterDelay = require('after-delay');
-var isMobile = require('./helpers/isMobile');
+var isTouch = require('touch-screen');
 
 $.flick = {};
 
 $.flick.inputs = {
   mouseX: require('./inputs/mouseX'),
-  mouseY: require('./inputs/mouseY'),
   tilt: require('./inputs/tilt')
 };
+
+$.flick.defaults = {
+  input: 'auto'
+}
 
 /**
  * Make a flicky thing!
@@ -18,11 +21,13 @@ $.flick.inputs = {
  * @param {object} options Object containing some options.
  */
 $.fn.flick = function flick(options) {
-  if (isMobile()) {
-    var $inputHandler = $.flick.inputs.tilt.call(this, options);
-  } else {
-    var $inputHandler = $.flick.inputs.mouseX.call(this, options);
+  options = $.extend({}, $.flick.defaults, options);
+
+  if (options.input === 'auto') {
+    options.input = isTouch() ? 'tilt' : 'mouseX';
   }
+
+  var $inputHandler = $.flick.inputs[options.input].call(this, options);
 
   var $pages = $(this).find('img');
   var lastPageNumber = 0;
